@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7971945465697082093}
   - component: {fileID: 2403474429193302962}
   - component: {fileID: 2648267764263129479}
+  - component: {fileID: 8962540916944502898}
   m_Layer: 5
   m_Name: Button_Empty
   m_TagString: Untagged
@@ -133,3 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c71a05b9cb7c4e44803bb1e6f158c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8962540916944502898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316594914351964010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c50cc2602183ea448b11ffae6a8cb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: {fileID: -2002172559964806065, guid: 7fbd29c54f05f6e47bb13f9080a36199, type: 2}
+  hover: {fileID: 8300000, guid: 406a349931528d94dbcb33b2b90d845a, type: 3}
+  click: {fileID: 8300000, guid: 6e80f0230aed0614ca4e9683ec82e021, type: 3}
