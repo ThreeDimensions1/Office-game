@@ -1,5 +1,5 @@
 
-![Logo](Assets/Textures/dwarf_small.png)
+![Logo](Assets/Textures/Our%20Icons/dwarf_small.png)
 # The Ultimate Dwarven Template (TUDT)
 
 **Let's make something dwarvelous!**
@@ -18,7 +18,7 @@
 - TMP, Cinemachine, Recorder installed
 
 ### Presets:
-- 4 Main Menu Templates ([In this folder](Assets/Scenes/Menu%Templates))
+- 4 Main Menu Templates ([In this folder](Assets/Scenes/Menu%20Templates))
 - 8 types of buttons, made using prefab variants
 
 
