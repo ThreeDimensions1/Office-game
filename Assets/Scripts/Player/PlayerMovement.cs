@@ -18,9 +18,23 @@ public class PlayerMovement : MonoBehaviour
     public float nonkickForce;
     public float torqueForce = 20f;
 
+    [Header("Rotation Handling")]
+    public bool thirdPerson;
+    public Vector2 spinRandomness = new(5, 10);
+    [Header("Speed limits")]
+    [Min(0)] public float speedLimit = 0;
+
+    Vector2 movementVector;
+
+    const float deadzone = 0.2f;
+
     void Awake() {
         controller = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
+        if(speedLimit > 0)
+        {
+            rb.maxLinearVelocity = speedLimit;
+        }
     }
 
     void OnEnable() {
@@ -32,12 +46,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ProcessJump(bool obj) {
-        if(obj == false) return;
+    void FixedUpdate()
+    {
+        if(Mathf.Abs(controller.MovementInput.x) > deadzone && movementVector.x != controller.MovementInput.x)
+        {
+            rb.AddTorque(0, UnityEngine.Random.Range(spinRandomness.x, spinRandomness.y) * controller.MovementInput.x, 0, ForceMode.Impulse);
+        }
+        movementVector = controller.MovementInput;
+    }
 
+    private void ProcessJump(bool obj) {
+        if(!obj) return;
+
+        if(thirdPerson) ProcessJump3Person();
+        else ProcessJump1Person();
+    }
+
+    void ProcessJump1Person()
+    {
         Ray kickRay = new Ray(KickDirection.position, KickDirection.forward);
         if(Physics.Raycast(kickRay, out RaycastHit hit, 1000f, LayersToKick)) {
-            Vector3 force = new Vector3();
+            Vector3 force = new();
             // 1. THE FUNNY FORCE
             // absolute push
             force += -KickDirection.forward * trueKickForce;
@@ -55,5 +84,10 @@ public class PlayerMovement : MonoBehaviour
             // If your not a gamer you dont get to kick like a man
             rb.AddForce(-KickDirection.forward * nonkickForce);
         }
+    }
+
+    void ProcessJump3Person()
+    {
+        rb.AddForce(-transform.forward * trueKickForce, ForceMode.Impulse);
     }
 }
