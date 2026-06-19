@@ -1,0 +1,19 @@
+using System;
+using UnityEngine;
+
+[Serializable]
+public class Vector3Reference
+{
+    public bool UseConstant = true;
+    public Vector3 ConstantValue;
+    public Vector3Variable Variable;
+
+    public Vector3 Value{
+        get{
+            return UseConstant ? ConstantValue : Variable.Value;
+        }set{ // make this have some security
+            if (UseConstant) ConstantValue = value; // Directly modify the constant value
+            else Variable.Value = value; // Modify the ScriptableObject variable
+        }
+    }
+}
