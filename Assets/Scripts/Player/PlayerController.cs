@@ -10,13 +10,14 @@ public class PlayerController : MonoBehaviour
     InputHelpers helper = new();
     private InputAction move;
     private InputAction look;
+    private InputAction jump; //Jump
 
     public Vector2 MovementInput { get; private set;}
     public Vector2 RotationInput { get; private set;}
 
     // public event Action<bool> inputAttack, inputReload, inputChangeWeapon;
     // movement accesories lol
-    // public event Action<bool> inputJump, inputCrounch, inputSprint;
+    public event Action<bool> inputJump;//, inputCrounch, inputSprint;
 
     // public event Action<bool> inputInteraction;
 
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
         // reload =    input.actions.FindAction("Reload", true);
         // changeWeapon = input.actions.FindAction("ChangeWeapon", true);
 
-        // jump =      input.actions.FindAction("Jump", true);
+        jump =      input.actions.FindAction("Jump", true);
         // sprint =    input.actions.FindAction("Sprint", true);
         // crounch =   input.actions.FindAction("Crounch", true);
 
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         // helper.BindBoolAction(reload, InvokeReload);
         // helper.BindBoolAction(changeWeapon, InvokeChangeWeapon);
 
-        // helper.BindBoolAction(jump, InvokeJump);
+        helper.BindBoolAction(jump, InvokeJump);
         // helper.BindBoolAction(sprint, InvokeSprint);
         // helper.BindBoolAction(crounch, InvokeCrounch);
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
     // private void InvokeReload(bool value) => inputReload?.Invoke(value);
     // private void InvokeChangeWeapon(bool value) => inputChangeWeapon?.Invoke(value);
 
-    // private void InvokeJump(bool value) => inputJump?.Invoke(value);
+    private void InvokeJump(bool value) => inputJump?.Invoke(value);
     // private void InvokeSprint(bool value) => inputSprint?.Invoke(value);
     // private void InvokeCrounch(bool value) => inputCrounch?.Invoke(value);
 
