@@ -67,6 +67,20 @@ public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveab
         currentState = newState;
         EnterState(currentState);
     }
+    public void CycleStates() {
+        switch (currentState) {
+            case State.FPV:
+                ExitState(currentState);
+                currentState = State.TPV;
+                EnterState(currentState);
+                break;
+            case State.TPV:
+                ExitState(currentState);
+                currentState = State.FPV;
+                EnterState(currentState);
+                break;
+        }
+    }
     /*public void InteractionInput(InteractionOutput output) {
         if (output.vehicle != null) {
             if(vehicular.vehicle == null && vehicular != null) {

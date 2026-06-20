@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     InputHelpers helper = new();
     private InputAction move;
     private InputAction look;
-    private InputAction jump; //Jump
+    private InputAction jump;
+    private InputAction cursorLock; //
 
     public Vector2 MovementInput { get; private set;}
     public Vector2 RotationInput { get; private set;}
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // public event Action<bool> inputAttack, inputReload, inputChangeWeapon;
     // movement accesories lol
     public event Action<bool> inputJump;//, inputCrounch, inputSprint;
-
+    public event Action<bool> inputCursorLock;
     // public event Action<bool> inputInteraction;
 
     private void Awake() {
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
         // crounch =   input.actions.FindAction("Crounch", true);
 
         // interaction = input.actions.FindAction("Interaction", true);
+
+        cursorLock =input.actions.FindAction("CursorLock", true);
     }
     private void OnEnable() {
         // helper.BindBoolAction(attack, InvokeAttack);
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         // helper.BindBoolAction(crounch, InvokeCrounch);
 
         // helper.BindBoolAction(interaction, InvokeInteraction);
+        helper.BindBoolAction(cursorLock, InvokeCursorLock);
     }
     private void OnDisable() {
         helper.UnbindAll();
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
     // private void InvokeChangeWeapon(bool value) => inputChangeWeapon?.Invoke(value);
 
     private void InvokeJump(bool value) => inputJump?.Invoke(value);
+    private void InvokeCursorLock(bool value) => inputCursorLock?.Invoke(value);
     // private void InvokeSprint(bool value) => inputSprint?.Invoke(value);
     // private void InvokeCrounch(bool value) => inputCrounch?.Invoke(value);
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour 
@@ -14,6 +15,24 @@ public class PlayerCamera : MonoBehaviour
 
     void Awake() {
         controller = GetComponent<PlayerController>();
+
+        CursorLock(false);
+    }
+    void OnEnable() {
+        controller.inputCursorLock += CursorLock;
+    }
+    void OnDisable() {
+        if (controller != null) {
+            controller.inputCursorLock -= CursorLock;
+        }
+    }
+
+    private void CursorLock(bool obj) {
+        if (obj) {
+            Cursor.lockState = CursorLockMode.None;
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Update() {
