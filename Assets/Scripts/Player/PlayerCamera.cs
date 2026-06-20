@@ -41,7 +41,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     void Update() {
-        if(!cursorReleased && !CameraLock) return;
+        if(cursorReleased || CameraLock) return;
 
         Rotation += controller.RotationInput * mouseSensitivity;
         Rotation = new Vector2(Mathf.Clamp(Rotation.x, -RotationBoundaries.x, RotationBoundaries.x), Mathf.Clamp(Rotation.y, -RotationBoundaries.y, RotationBoundaries.y));
