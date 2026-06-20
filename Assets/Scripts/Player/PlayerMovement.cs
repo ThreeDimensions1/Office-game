@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
+
     private PlayerController controller;
-    private Rigidbody rb;
+    public Rigidbody rb {get; private set; }
 
     public Transform Orientation;
 
@@ -29,6 +31,14 @@ public class PlayerMovement : MonoBehaviour
     const float deadzone = 0.2f;
 
     void Awake() {
+        if(Instance)
+        {
+            Debug.LogError("Movement instance already set");
+            Destroy(gameObject);
+        }
+
+        Instance = this;
+
         controller = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
         if(speedLimit > 0)
@@ -44,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
         if (controller != null) {
             controller.inputJump -= ProcessJump;
         }
+    }
+
+    void OnDestroy()
+    {
+        Instance = null;
     }
 
     void FixedUpdate()
