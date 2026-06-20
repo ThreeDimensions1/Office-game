@@ -569,8 +569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   LookAt: {fileID: 363321777457991442}
-  RotationBoundaries: {x: 60, y: 60}
-  mouseSensitivity: 0.05
+  RotationBoundaries: {x: 90, y: 60}
+  mouseSensitivity: 0.1
 --- !u!114 &4091923440045523006
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ public class PlayerCamera : MonoBehaviour
     // public float Offset;
     public float mouseSensitivity;
 
+    [HideInInspector] public bool CameraLock = false;
+    private bool cursorReleased;// = false;
+
     private Vector2 Rotation;
 
     void Awake() {
@@ -29,22 +32,16 @@ public class PlayerCamera : MonoBehaviour
 
     private void CursorLock(bool obj) {
         if (obj) {
+            cursorReleased = true;
             Cursor.lockState = CursorLockMode.None;
         } else {
+            cursorReleased = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
     void Update() {
-        /*Vector2 lookDelta = controller.RotationInput;
-
-        float PositionX = LookAt.localPosition.x + lookDelta.x * mouseSensitivity;
-        float PositionY = LookAt.localPosition.y + lookDelta.y * mouseSensitivity;
-
-        PositionX = Mathf.Clamp(PositionX, -MovementRange.x, MovementRange.x);
-        PositionY = Mathf.Clamp(PositionY, -MovementRange.y, MovementRange.y);
-
-        LookAt.localPosition = new Vector3(PositionX, PositionY, LookAt.localPosition.z);*/
+        if(!cursorReleased && !CameraLock) return;
 
         Rotation += controller.RotationInput * mouseSensitivity;
         Rotation = new Vector2(Mathf.Clamp(Rotation.x, -RotationBoundaries.x, RotationBoundaries.x), Mathf.Clamp(Rotation.y, -RotationBoundaries.y, RotationBoundaries.y));
