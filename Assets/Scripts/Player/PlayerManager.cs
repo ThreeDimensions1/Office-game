@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 // [RequireComponent(typeof(Rigidbody))]
 // [RequireComponent(typeof(PlayerController))]
@@ -8,25 +9,29 @@ using UnityEngine;
 // [RequireComponent(typeof(VehicleControl))]
 public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveable
 {
-    [Header("The big daddy")]
+    [Header("State Control")]
     public State currentState;
 
-    [Header("Variable Control")]
+    /*[Header("Variable Control")]
     [SerializeField] BoolVariable canMove;
-    [SerializeField] BoolVariable canTurn, canInteract, canUseWeapons;
+    [SerializeField] BoolVariable canTurn, canInteract, canUseWeapons;*/
+
+    [Header("Cameras")]
+    [SerializeField] private CinemachineCamera FPVC;
+    [SerializeField] private CinemachineCamera TPVC;
 
     // complete reference list
     public PlayerController control {get; private set;}
     // public Vitals vitals {get; private set;}
     // public InteractionSystem interaction {get; private set;}
-    // public PlayerMovement movement {get; private set;}
+    public PlayerMovement movement {get; private set;}
     // public Armament armament {get; private set;}
     // public VehicleControl vehicular {get; private set;}
     // public PlayerInventory inventory {get; private set;}
     public Rigidbody rb {get; private set;}
 
     [Header("Manualy set references")]
-    public Collider mainCollider;
+    public Collider mainCollider; 
 
     private Vector3 relativePositionReference;
 
@@ -35,8 +40,9 @@ public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveab
     void Awake() {
         //vitals = GetComponent<Vitals>();
         control = GetComponent<PlayerController>();
-        /*interaction = GetComponent<InteractionSystem>();
         movement = GetComponent<PlayerMovement>();
+        /*interaction = GetComponent<InteractionSystem>();
+        
         armament = GetComponent<Armament>();
         vehicular = GetComponent<VehicleControl>();
         inventory = GetComponent<PlayerInventory>();*/
@@ -69,17 +75,29 @@ public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveab
             }
         }
     }*/
-    public void VehicleInput(bool leavingVehicle) {
-        if (leavingVehicle) {
-            SetState(State.FPS);
-        }
-    }
+    // public void VehicleInput(bool leavingVehicle) {
+    //     if (leavingVehicle) {
+    //         SetState(State.FPS);
+    //     }
+    // }
     /*void LateUpdate() {
         if(currentState == State.Vehicle && vehicular.vehicle != null) {
             transform.position = vehicular.vehicle.transform.TransformPoint(vehicular.vehicle.playerSeat);
         }
     }*/
     void EnterState(State state) {
+        switch (state) {
+            case State.FPV:
+                movement.thirdPerson = false;
+                FPVC.Priority = 100;
+                TPVC.Priority = 0;
+                break;
+            case State.TPV:
+                movement.thirdPerson = true;
+                FPVC.Priority = 0;
+                TPVC.Priority = 100;
+                break;
+        }
         /*switch(state) {
 
             case State.FPS:
@@ -155,9 +173,7 @@ public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveab
     }*/
 
     [System.Serializable] public enum State {
-        FPS,
-        Vehicle
-        // add Swimming or Climbing if you ever feel like it. 
-        // Dialogue will also appear here.
+        FPV,
+        TPV
     }
 }
