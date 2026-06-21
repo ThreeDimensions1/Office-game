@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerDestruction : MonoBehaviour
 {
     public static PlayerDestruction Instance;
+    // keep this
     public Action<DestructionObject, float> onHit;
-    float velocity;
-
+    // float velocity;
+    // public TagHandle destructibles;
     Rigidbody rb;
 
     void Awake()
@@ -25,16 +26,17 @@ public class PlayerDestruction : MonoBehaviour
         Instance = null;
     }
 
-    void FixedUpdate()
-    {
+    /*void FixedUpdate() {
         velocity = rb.linearVelocity.magnitude;
-    }
+    }*/
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.TryGetComponent(out DestructionObject obj))
-        {
-            onHit?.Invoke(obj, velocity);
+    /*void OnCollisionEnter(Collision collision) {
+        float velocity = rb.linearVelocity.magnitude;
+
+        if(collision.gameObject.CompareTag(destructibles))
+        if(collision.gameObject.TryGetComponent(out DestructionObject obj)) {
+            // onHit?.Invoke(obj, velocity);
+            obj.
         }
-    }
+    }*/
 }
