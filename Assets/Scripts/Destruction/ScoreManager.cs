@@ -5,8 +5,8 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public Action<string> scoreUpdate;
-    public Action<int> comboUpdate;
+    public Action<string> ScoreUpdate;
+    public Action<int> ComboUpdate;
 
     void Awake() {
         if(Instance) {
@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
         combo += value;
         comboClock = comboClockMax;
 
-        comboUpdate.Invoke(67); // unused for now
+        ComboUpdate.Invoke(combo); // unused for now
     }
     public float GetMultiplier() {
         return 1f;
@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
 
         scoreGain = (int)(scoreGain * GetMultiplier());
         string scoreLabel = string.Format("+{0}pt - {1}", scoreGain, name);
-        scoreUpdate?.Invoke(scoreLabel);
+        ScoreUpdate?.Invoke(scoreLabel);
 
         score += scoreGain;
     }

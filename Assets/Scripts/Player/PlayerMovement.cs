@@ -121,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 reliableExplosionPoint = (hit.point == Vector3.zero) ? hit.collider.transform.position : hit.point;
 
             KickDestruction(hit, forceModifier, reliableExplosionPoint);
-            // no kick destruction logic present, THIS IS THE ISSUE
         } else {
             // If your not a gamer you dont get to kick like a man
             rb.AddForce(-transform.forward * nonkickForce * forceModifier, ForceMode.Impulse);
