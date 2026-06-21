@@ -15,11 +15,21 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 boxScale = new Vector3(1f, 1f, 1f);
     public LayerMask LayersToKick;
 
+    [Header("Charge up:")]
+    public float KickCharge;
+    [SerializeField] private float totalChargeTime = 2.0f;
+    bool chargingKick = false;
+
     [Header("Kick:")]
     public float trueKickForce;
     public float relativeKickForce;
     public float nonkickForce;
     public float torqueForce = 20f;
+
+    [Header("Destruction:")]
+    public float destructionForceDirect;
+    public float explosionForce;
+    public float explostionSize;
 
     [Header("Rotation Handling")]
     public bool thirdPerson;
@@ -64,40 +74,54 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(Mathf.Abs(controller.MovementInput.x) > deadzone && movementVector.x != controller.MovementInput.x)
-        {
+        if(Mathf.Abs(controller.MovementInput.x) > deadzone && movementVector.x != controller.MovementInput.x) {
             rb.AddTorque(0, UnityEngine.Random.Range(spinRandomness.x, spinRandomness.y) * controller.MovementInput.x, 0, ForceMode.Impulse);
         }
         movementVector = controller.MovementInput;
+
+        if (chargingKick) {
+            KickCharge += Time.fixedDeltaTime / totalChargeTime;
+            KickCharge = Mathf.Clamp01(KickCharge);
+        }
     }
 
     private void ProcessJump(bool obj) {
-        if(!obj) return;
+        if (obj) {
+            chargingKick = true;
+        } else {
+            chargingKick = false;
 
-        if(thirdPerson) ProcessJump3Person();
-        else ProcessJump1Person();
+            if(thirdPerson) ProcessJump3Person();
+            else ProcessJump1Person();
+
+            KickCharge = 0f;
+        }
     }
 
     void ProcessJump1Person() {
         Ray kickRay = new Ray(KickDirection.position, KickDirection.forward);
 
+        float forceModifier = KickCharge;
+
         if(Physics.Raycast(kickRay, out RaycastHit hit, 1000f, LayersToKick)) {
-            ForceAndTorque(hit);
+            ForceAndTorque(hit, forceModifier);
+            KickDestruction(hit, forceModifier);
         } else {
             // If your not a gamer you dont get to kick like a man
-            rb.AddForce(-KickDirection.forward * nonkickForce, ForceMode.Impulse);
+            rb.AddForce(-KickDirection.forward * nonkickForce * forceModifier, ForceMode.Impulse);
         }
     }
     void ProcessJump3Person() {
-        // rb.AddForce(-transform.forward * trueKickForce, ForceMode.Impulse);
+        float forceModifier = KickCharge;
+
         if(Physics.BoxCast(Orientation.position, boxScale/2, Orientation.forward, out RaycastHit hit, Orientation.rotation, 1000f, LayersToKick)){
-            ForceAndTorque(hit);
+            ForceAndTorque(hit, forceModifier);
         } else {
             // If your not a gamer you dont get to kick like a man
-            rb.AddForce(-transform.forward * nonkickForce, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * nonkickForce * forceModifier, ForceMode.Impulse);
         }
     }
-    void ForceAndTorque(RaycastHit hit) {
+    void ForceAndTorque(RaycastHit hit, float forceModifier) {
         Vector3 force = new();
 
         // 1. THE FUNNY FORCE
@@ -107,15 +131,31 @@ public class PlayerMovement : MonoBehaviour
         // funny push
         force += new Vector3(hit.normal.x, 0, hit.normal.z).normalized * relativeKickForce;
 
-        rb.AddForce(force, ForceMode.Impulse);
+        rb.AddForce(force * forceModifier, ForceMode.Impulse);
 
         // 2. THE FUNNY TORQUE
 
         // Calculate the rotational axis perpendicular to the kick and the wall normal
         Vector3 torqueAxis = Vector3.Cross(KickDirection.forward, hit.normal);
-        rb.AddTorque(torqueAxis * torqueForce, ForceMode.Impulse);
+        rb.AddTorque(torqueAxis * torqueForce * forceModifier, ForceMode.Impulse);
     }
-    
+    void KickDestruction(RaycastHit hit, float forceModifier) {
+        // direct kick
+        Rigidbody targetRb = hit.collider.GetComponent<Rigidbody>();
+        if(targetRb == null) return;
+        
+        targetRb.AddForce(KickDirection.forward * destructionForceDirect * forceModifier);
+        // explosion
+        if(explostionSize > 0) {
+            Collider[] colliders = Physics.OverlapSphere(hit.point, explostionSize, LayersToKick);
+            for(int i = 0; i < colliders.Length; i++) {
+                targetRb = colliders[i].GetComponent<Rigidbody>();
+                if(targetRb != null) {
+                    targetRb.AddExplosionForce(explosionForce * forceModifier, hit.point, explostionSize);
+                }
+            }
+        }
+    }
     private void OnDrawGizmosSelected() {
         if (Orientation == null) return;
 
