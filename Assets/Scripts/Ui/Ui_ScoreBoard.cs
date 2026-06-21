@@ -1,12 +1,23 @@
 using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class Ui_ScoreBoard : MonoBehaviour 
 {
+    [Header("Popups:")]
     public Transform parent;
     public UiScoreCounter ScorePopupPrefab;
+    public float CounterLifetime;
     private ObjectPool<UiScoreCounter> _pool;
+    private List<UiScoreCounter> activeCounters = new();
+
+    [Header("Combo:")]
+    public TMP_Text textCombo;
+    public TMP_Text textMultiplier;
+    public TMP_Text textFlavor;
+
 
     void Awake() {
         // Initialize the pool with its rules
@@ -17,7 +28,7 @@ public class Ui_ScoreBoard : MonoBehaviour
             actionOnDestroy: OnDestroyPoolObject, // Cleanup if pool gets too big
             collectionCheck: true,              // Throws errors if you release the same object twice
             defaultCapacity: 20,                // Pre-allocates memory for 20 items
-            maxSize: 100                        // Absolute limit of items alive in memory
+            maxSize: 50                        // Absolute limit of items alive in memory
         );
     }
     private UiScoreCounter CreatePooledItem() {
@@ -26,27 +37,39 @@ public class Ui_ScoreBoard : MonoBehaviour
     }
     private void OnTakeFromPool(UiScoreCounter go) {
         go.gameObject.SetActive(true);
+        activeCounters.Add(go);
     }
     private void OnReturnedToPool(UiScoreCounter go) {
         go.gameObject.SetActive(false);
+        activeCounters.Remove(go);
     }
     private void OnDestroyPoolObject(UiScoreCounter go) {
-        Destroy(go);
+        Destroy(go.gameObject);
     }
 
     void Update() {
-        
+        for (int i = activeCounters.Count - 1; i >= 0; i--) {
+            activeCounters[i].lifetime -= Time.deltaTime;
+            if(activeCounters[i].lifetime < 0) _pool.Release(activeCounters[i]);
+        }
     }
     void OnEnable() {
         ScoreManager.Instance.ScoreUpdate += onScoreUpdate;
         ScoreManager.Instance.ComboUpdate += onComboUpdate;
     }
     private void onScoreUpdate(string obj) {
+        if (activeCounters.Count >= 40) {
+            activeCounters[0].lifetime = -1f;
+        }
         
+        UiScoreCounter counter = _pool.Get();
+        counter.transform.SetAsFirstSibling();
+        counter.UpdateContent(string.Format(obj));
+        counter.lifetime = CounterLifetime;
     }
-    private void onComboUpdate(int obj) {
-        
+    private void onComboUpdate(int combo, float multiplier, string flavorText) {
+        textCombo.text = string.Format("{0}x", combo);
+        textMultiplier.text = string.Format("{0}x", multiplier.ToString("F1"));
+        textFlavor.text = flavorText;
     }
-
-    
 }
