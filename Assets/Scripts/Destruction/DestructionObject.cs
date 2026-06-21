@@ -5,41 +5,35 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class DestructionObject : MonoBehaviour
 {
+    [Header("Score related")]
+    [SerializeField] protected int scoreGain;
+    public int ScoreGain => scoreGain;
+    [SerializeField] protected string displayName;
+    public string DisplayName => displayName;
+
+    [Header("Object settings")]
     public float destroyVelocity = 2;
     public UnityEvent onDestroy;
 
-    protected float velocity;
-
+    private bool isDestroyed = false;
     Rigidbody rb;
 
-    public virtual void Start()
-    {
-        PlayerDestruction.Instance.onHit += OnHit;
+    public virtual void Start() {
         rb = GetComponent<Rigidbody>();
     }
 
-    public virtual void OnHit(DestructionObject obj, float velocity)
-    {
-        if(obj == this && velocity > destroyVelocity)
-        {
-            OnHit();
-        }
-    }
+    public virtual void OnHit() {
+        if (isDestroyed) return;
+        isDestroyed = true;
 
-    public virtual void OnHit()
-    {
+        ScoreManager.Instance.RegisterDestruction(scoreGain, displayName);
         onDestroy?.Invoke();
     }
+    
+    protected virtual void OnCollisionEnter(Collision collision) {
+        float velocity = collision.relativeVelocity.magnitude; //rb.linearVelocity.magnitude;
 
-    void FixedUpdate()
-    {
-        velocity = rb.linearVelocity.magnitude;
-    }
-
-    protected virtual void OnCollisionEnter(Collision collision)
-    {
-        if(velocity > destroyVelocity)
-        {
+        if(velocity > destroyVelocity) {
             OnHit();
         }
     }
