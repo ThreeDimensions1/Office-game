@@ -142,9 +142,9 @@ public class PlayerMovement : MonoBehaviour
     void KickDestruction(RaycastHit hit, float forceModifier) {
         // direct kick
         Rigidbody targetRb = hit.collider.GetComponent<Rigidbody>();
-        if(targetRb != null) {
-            targetRb.AddForce(KickDirection.forward * destructionForceDirect * forceModifier);
-        }
+        if(targetRb == null) return;
+        
+        targetRb.AddForce(KickDirection.forward * destructionForceDirect * forceModifier);
         // explosion
         if(explostionSize > 0) {
             Collider[] colliders = Physics.OverlapSphere(hit.point, explostionSize, LayersToKick);
