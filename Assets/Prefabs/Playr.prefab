@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 1883502221234711220}
   - component: {fileID: 4789299814600824140}
   - component: {fileID: 4091923440045523006}
+  - component: {fileID: 512101811386483965}
   m_Layer: 0
   m_Name: Playr
   m_TagString: Untagged
@@ -593,6 +594,18 @@ MonoBehaviour:
   FPVC: {fileID: 5007903565556795481}
   TPVC: {fileID: 5462587698794846591}
   mainCollider: {fileID: 7093391474480937985}
+--- !u!114 &512101811386483965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134920723650291290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed76388d8a003f4b90ad82d3bc7dc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDestruction
 --- !u!1 &2266643618486941722
 GameObject:
   m_ObjectHideFlags: 0
