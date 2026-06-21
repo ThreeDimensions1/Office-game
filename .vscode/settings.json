@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Office game.slnx",
+    "dotnet.defaultSolution": "Office-game.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
