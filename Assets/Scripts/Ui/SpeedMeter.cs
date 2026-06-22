@@ -10,8 +10,9 @@ public class SpeedMeter : MonoBehaviour
 
     [Header("Image")]
     public Image image;
-    public Color colorSlow = Color.green;
-    public Color colorFast = Color.orange;
+    /*public Color colorSlow = Color.green;
+    public Color colorFast = Color.orange;*/
+    public Gradient gradient;
 
     Rigidbody playerRb;
 
@@ -35,7 +36,7 @@ public class SpeedMeter : MonoBehaviour
         if (!Mathf.Approximately(fillTarget, image.fillAmount))
         {
             image.fillAmount = Mathf.Lerp(image.fillAmount, fillTarget, Time.deltaTime * 1);
-            image.color = Color.Lerp(colorSlow, colorFast, image.fillAmount);
+            image.color = gradient.Evaluate(image.fillAmount); //Color.Lerp(colorSlow, colorFast, image.fillAmount);
         }
     }
 }

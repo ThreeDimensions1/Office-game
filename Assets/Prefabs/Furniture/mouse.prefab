@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a180b8e472eff4293fd55c61f5fa12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestructionObject
+  scoreProfile: 0
+  displayName: Rat
   destroyVelocity: 2
   onDestroy:
     m_PersistentCalls:
