@@ -26,7 +26,7 @@ public class DestructionObject : MonoBehaviour
         if (isDestroyed) return;
         isDestroyed = true;
 
-        ScoreManager.Instance.RegisterDestruction(scoreGain, displayName);
+        ScoreManager.Instance?.RegisterDestruction(scoreGain, displayName);
         onDestroy?.Invoke();
     }
     
