@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour 
+public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public Action<string> ScoreUpdate;
+    public Action<int, int> ScoreUpdate;
     public Action<int, float, string> ComboUpdate;
 
     void Awake() {
@@ -26,11 +26,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private float comboClockMax = 5f;
     public float ComboClockMax => comboClockMax;
 
+    [Header("Score gain:")]
+    public int[] scorePerTier = new int[3];
+
     private float multiplier;
 
     [Header("Looks")]
     public ComboDatabase comboDatabase;
-    [SerializeField] private string popupFormatting = "{1} - {0}pt";
+    // [SerializeField] private string popupFormatting = "{1} - {0}pt";
 
     /*void OnEnable() {
         PlayerDestruction.Instance.onHit += ProcessColosion;
@@ -59,14 +62,14 @@ public class ScoreManager : MonoBehaviour
     //     return 1f;
     // }
     // extremely lean, complexity later
-    public void RegisterDestruction(int scoreGain, string name) {
+    public void RegisterDestruction(ScoreProfile scoreProfile, string name) {
         IncreaseCombo(1);
-
+        int scoreGain = scorePerTier[(int)scoreProfile];
         scoreGain = (int)(scoreGain * multiplier);
-        string scoreLabel = string.Format(popupFormatting, scoreGain, name);
-        ScoreUpdate?.Invoke(scoreLabel);
-
+        // string scoreLabel = string.Format(popupFormatting, scoreGain, name);
+        
         score += scoreGain;
+        ScoreUpdate?.Invoke(scoreGain, score);
     }
     /*private void ProcessColosion(DestructionObject @object, float arg2) {
         if(@object.destroyVelocity <= arg2) {
@@ -74,4 +77,11 @@ public class ScoreManager : MonoBehaviour
         }
         // scoreUpdate?.Invoke();
     }*/
+}
+
+[Serializable]
+public enum ScoreProfile {
+    Small, 
+    Medium, 
+    Large
 }

@@ -6,8 +6,9 @@ using UnityEngine.Events;
 public class DestructionObject : MonoBehaviour
 {
     [Header("Score related")]
-    [SerializeField] protected int scoreGain;
-    public int ScoreGain => scoreGain;
+    // [SerializeField] protected int scoreGain = 100;
+    // public int ScoreGain => scoreGain;
+    [SerializeField] protected ScoreProfile scoreProfile = ScoreProfile.Small;
     [SerializeField] protected string displayName;
     public string DisplayName => displayName;
 
@@ -25,9 +26,9 @@ public class DestructionObject : MonoBehaviour
     public virtual void OnHit() {
         if (isDestroyed) return;
         isDestroyed = true;
-
-        ScoreManager.Instance?.RegisterDestruction(scoreGain, displayName);
         onDestroy?.Invoke();
+
+        ScoreManager.Instance?.RegisterDestruction(scoreProfile, displayName);
     }
     
     protected virtual void OnCollisionEnter(Collision collision) {
