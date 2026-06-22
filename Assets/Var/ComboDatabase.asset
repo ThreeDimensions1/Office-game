@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: ComboDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ComboDatabase
   comboTiers:
-  - comboRange: {x: 0, y: 0}
-    flavorText: 
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-    scoreMultiplier: 1
   - comboRange: {x: 1, y: 5}
-    flavorText: Weak
+    flavorText: Naked
     textColor: {r: 1, g: 1, b: 1, a: 1}
     scoreMultiplier: 1
   - comboRange: {x: 6, y: 10}
@@ -29,11 +25,11 @@ MonoBehaviour:
     flavorText: Venomous
     textColor: {r: 1, g: 1, b: 1, a: 1}
     scoreMultiplier: 1.7
-  - comboRange: {x: 11, y: 20}
-    flavorText: Venomous
+  - comboRange: {x: 21, y: 30}
+    flavorText: Liquid !
     textColor: {r: 1, g: 1, b: 1, a: 1}
     scoreMultiplier: 2
-  - comboRange: {x: 21, y: 30}
-    flavorText: Fired!
+  - comboRange: {x: 31, y: 50}
+    flavorText: Madjestic !
     textColor: {r: 1, g: 1, b: 1, a: 1}
     scoreMultiplier: 2.5

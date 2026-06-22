@@ -28,7 +28,7 @@ public class DestructionObject : MonoBehaviour
         isDestroyed = true;
         onDestroy?.Invoke();
 
-        ScoreManager.Instance.RegisterDestruction(scoreProfile, displayName);
+        ScoreManager.Instance?.RegisterDestruction(scoreProfile, displayName);
     }
     
     protected virtual void OnCollisionEnter(Collision collision) {

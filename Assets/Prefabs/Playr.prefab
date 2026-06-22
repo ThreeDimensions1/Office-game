@@ -556,8 +556,8 @@ MonoBehaviour:
   relativeKickForce: 7
   nonkickForce: 5
   torqueForce: 2
-  destructionForceDirect: 1000
-  explosionForce: 750
+  destructionForceDirect: 600
+  explosionForce: 400
   explostionSize: 3
   upwardsModifier: 0
   thirdPerson: 1
