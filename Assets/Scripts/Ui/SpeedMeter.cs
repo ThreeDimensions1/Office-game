@@ -28,7 +28,7 @@ public class SpeedMeter : MonoBehaviour
         float currentMagnitude = playerRb.linearVelocity.magnitude;
         if(magnitude != currentMagnitude)
         {
-            speedText.text = $"{Mathf.RoundToInt(currentMagnitude * magnitudeMultiplier)} km/h";
+            speedText.text = $"{Mathf.RoundToInt(currentMagnitude * magnitudeMultiplier)} km/h  .";
         }
         magnitude = currentMagnitude;
         
