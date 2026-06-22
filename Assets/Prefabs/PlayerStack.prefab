@@ -128,7 +128,7 @@ MonoBehaviour:
   comboClock: 0
   comboClockMax: 5
   comboDatabase: {fileID: 11400000, guid: 07b61161fd40737489e3fb9604f26a46, type: 2}
-  popupFormatting: '{1} - {0}pt'
+  popupFormatting: '{1} -   {0}pt'
 --- !u!1 &4174792643671831846
 GameObject:
   m_ObjectHideFlags: 0
