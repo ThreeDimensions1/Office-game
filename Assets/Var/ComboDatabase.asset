@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99723ee9c26fe8340a76e52041bf2e3a, type: 3}
+  m_Name: ComboDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ComboDatabase
+  comboTiers:
+  - comboRange: {x: 0, y: 0}
+    flavorText: 
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 1
+  - comboRange: {x: 1, y: 5}
+    flavorText: Weak
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 1
+  - comboRange: {x: 6, y: 10}
+    flavorText: Solid
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 1.5
+  - comboRange: {x: 11, y: 20}
+    flavorText: Venomous
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 1.7
+  - comboRange: {x: 11, y: 20}
+    flavorText: Venomous
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 2
+  - comboRange: {x: 21, y: 30}
+    flavorText: Fired!
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    scoreMultiplier: 2.5

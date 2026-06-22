@@ -559,6 +559,7 @@ MonoBehaviour:
   destructionForceDirect: 1000
   explosionForce: 750
   explostionSize: 3
+  upwardsModifier: 0
   thirdPerson: 1
   spinRandomness: {x: 0.7, y: 1.5}
   speedLimit: 25
@@ -856,8 +857,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2905365819490657849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32141078, y: 0.3587789, z: -0.13313273, w: 0.86616886}
-  m_LocalPosition: {x: -3.5, y: 4.26, z: -3.5}
+  m_LocalRotation: {x: 0.32141078, y: 0.3587789, z: -0.1331327, w: 0.86616886}
+  m_LocalPosition: {x: -3.5, y: 4.2599564, z: -3.499916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2954,10 +2955,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6093592463355912122, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f9666557f5e01ed49bbbd66606b67d3d, type: 2}
+    - target: {fileID: -1806680513116206669, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 19309307c002b7d44b66e5f5da1302b9, type: 2}
+    - target: {fileID: -1461304994638716399, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f9666557f5e01ed49bbbd66606b67d3d, type: 2}
+    - target: {fileID: -804731622281664130, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 19309307c002b7d44b66e5f5da1302b9, type: 2}
+    - target: {fileID: -678588488315902003, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f9666557f5e01ed49bbbd66606b67d3d, type: 2}
     - target: {fileID: 919132149155446097, guid: b341af307071124408c94b8e88b25fed, type: 3}
       propertyPath: m_Name
       value: chair
       objectReference: {fileID: 0}
+    - target: {fileID: 1129496810705857465, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 19309307c002b7d44b66e5f5da1302b9, type: 2}
+    - target: {fileID: 8442510506162454399, guid: b341af307071124408c94b8e88b25fed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 19309307c002b7d44b66e5f5da1302b9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
