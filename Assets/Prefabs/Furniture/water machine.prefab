@@ -6068,6 +6068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef60cabce1924c4e9998b28651dd481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantDestruction
+  scoreProfile: 2
+  displayName: Water machine
   destroyVelocity: 5
   onDestroy:
     m_PersistentCalls:

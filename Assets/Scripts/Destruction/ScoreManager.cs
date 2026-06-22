@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour 
+public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
@@ -25,6 +25,9 @@ public class ScoreManager : MonoBehaviour
     public float ComboClock => comboClock;
     [SerializeField] private float comboClockMax = 5f;
     public float ComboClockMax => comboClockMax;
+
+    [Header("Score gain:")]
+    public int[] scorePerTier = new int[3];
 
     private float multiplier;
 
@@ -59,8 +62,9 @@ public class ScoreManager : MonoBehaviour
     //     return 1f;
     // }
     // extremely lean, complexity later
-    public void RegisterDestruction(int scoreGain, string name) {
+    public void RegisterDestruction(ScoreProfile scoreProfile, string name) {
         IncreaseCombo(1);
+        int scoreGain = scorePerTier[(int)scoreProfile];
 
         scoreGain = (int)(scoreGain * multiplier);
         string scoreLabel = string.Format(popupFormatting, scoreGain, name);
@@ -74,4 +78,11 @@ public class ScoreManager : MonoBehaviour
         }
         // scoreUpdate?.Invoke();
     }*/
+}
+
+[Serializable]
+public enum ScoreProfile {
+    Small, 
+    Medium, 
+    Large
 }
