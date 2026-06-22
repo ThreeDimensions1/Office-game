@@ -471,7 +471,7 @@ Rigidbody:
   m_GameObject: {fileID: 2134920723650291290}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 1
+  m_LinearDamping: 0.4
   m_AngularDamping: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -556,12 +556,12 @@ MonoBehaviour:
   relativeKickForce: 7
   nonkickForce: 5
   torqueForce: 2
-  destructionForceDirect: 600
-  explosionForce: 400
-  explostionSize: 3
+  destructionForceDirect: 0
+  explosionForce: 0
+  explostionSize: 0
   upwardsModifier: 0
   thirdPerson: 1
-  spinRandomness: {x: 0.7, y: 1.5}
+  spinRandomness: {x: 1, y: 1}
   speedLimit: 25
 --- !u!114 &4789299814600824140
 MonoBehaviour:

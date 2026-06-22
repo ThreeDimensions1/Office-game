@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,15 +17,23 @@ public class DestructionObject : MonoBehaviour
     public float destroyVelocity = 2;
     public UnityEvent onDestroy;
 
+    [Header("Effects")]
+    public float impulseForce = 1f;
+
     private bool isDestroyed = false;
     Rigidbody rb;
 
+    CinemachineImpulseSource impulse;
+
     public virtual void Start() {
         rb = GetComponent<Rigidbody>();
+        impulse = FindAnyObjectByType<CinemachineImpulseSource>();
     }
 
     public virtual void OnHit() {
         if (isDestroyed) return;
+        impulse?.GenerateImpulseWithForce(impulseForce);
+
         isDestroyed = true;
         onDestroy?.Invoke();
 
