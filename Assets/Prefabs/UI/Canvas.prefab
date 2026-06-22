@@ -2145,8 +2145,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Room 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a14cdf7670fe3e744b7ccd76620733b0, type: 2}
-  m_sharedMaterial: {fileID: 8801487152828974053, guid: a14cdf7670fe3e744b7ccd76620733b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0fbc25f5ea6abde47b431d4c36de7015, type: 2}
+  m_sharedMaterial: {fileID: 3580462361099251633, guid: 0fbc25f5ea6abde47b431d4c36de7015, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2271,6 +2271,7 @@ MonoBehaviour:
   ScorePopupPrefab: {fileID: 2831274890305550291, guid: aa674aad8e09ef24cb611abd9b0fd5f1, type: 3}
   CounterLifetime: 2
   popupFormatting: '{1} - {0}pt'
+  scoreFormatting: '{0}$'
   textScore: {fileID: 676239296283408459}
   textCombo: {fileID: 5767643851461228640}
   textMultiplier: {fileID: 5500478417173189590}
