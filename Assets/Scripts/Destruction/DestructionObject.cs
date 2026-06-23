@@ -25,15 +25,21 @@ public class DestructionObject : MonoBehaviour
 
     CinemachineImpulseSource impulse;
 
+    AudioSource source;
+
     public virtual void Start() {
         rb = GetComponent<Rigidbody>();
         impulse = FindAnyObjectByType<CinemachineImpulseSource>();
+        source = GetComponentInChildren<AudioSource>();
     }
 
     public virtual void OnHit() {
         if (isDestroyed) return;
         impulse?.GenerateImpulseWithForce(impulseForce);
-
+        if(source)
+        {
+            source?.Play();
+        }
         isDestroyed = true;
         onDestroy?.Invoke();
 
@@ -44,6 +50,10 @@ public class DestructionObject : MonoBehaviour
         float velocity = collision.relativeVelocity.magnitude; //rb.linearVelocity.magnitude;
 
         if(velocity > destroyVelocity) {
+            if(!isDestroyed && collision.gameObject.TryGetComponent(out FirstDestroy destroy) && !destroy.destroyed)
+            {
+                destroy.StartCrazyness();
+            }
             OnHit();
         }
     }
