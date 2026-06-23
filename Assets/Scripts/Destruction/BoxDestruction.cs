@@ -4,6 +4,7 @@ using UnityEngine;
 public class BoxDestruction : DestructionObject
 {
     public ParticleSystem particles;
+    public AudioSource sfx;
 
     public override void OnHit()
     {
@@ -14,6 +15,11 @@ public class BoxDestruction : DestructionObject
             trans.localScale = Vector3.one;
             trans.position = transform.position;
             particles.Play();
+        }
+        if(sfx)
+        {
+            sfx.transform.parent = null;
+            sfx.Play();
         }
         base.OnHit();
     }
