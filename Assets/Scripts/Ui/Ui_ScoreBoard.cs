@@ -92,6 +92,7 @@ public class Ui_ScoreBoard : MonoBehaviour
 
     public void SaveProgress()
     {
-        Progress.SaveProgress($"Floor{FloorInfo.Instance.currentFloor.floorID}", score);
+        string savefile = $"Floor{FloorInfo.Instance.currentFloor.floorID}";
+        if (Progress.LoadProgress(savefile) < score) Progress.SaveProgress(savefile, score);
     }
 }
