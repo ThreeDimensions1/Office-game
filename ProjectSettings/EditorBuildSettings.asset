@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Settings.unity
     guid: b0df4c75763dd5a40a9f6cec157417e8
+  - enabled: 1
+    path: Assets/Scenes/Simon's scene 1.unity
+    guid: 894eebc7f8044af48b421858cb177bde
+  - enabled: 1
+    path: Assets/Scenes/Slopmaster's scene.unity
+    guid: 5c6296315381f564398262a5a68a1211
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

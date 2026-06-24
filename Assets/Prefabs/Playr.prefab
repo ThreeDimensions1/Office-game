@@ -192,6 +192,37 @@ Transform:
   - {fileID: 2440585318492774468}
   m_Father: {fileID: 373149367251621220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &879005694164624665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8109765000520213954}
+  m_Layer: 0
+  m_Name: FollowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8109765000520213954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879005694164624665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.941, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7881386203428104036}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &897645449879624018
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +465,7 @@ GameObject:
   - component: {fileID: 4091923440045523006}
   - component: {fileID: 512101811386483965}
   - component: {fileID: 8652947330582698215}
+  - component: {fileID: 6002386605480057851}
   m_Layer: 0
   m_Name: Playr
   m_TagString: Untagged
@@ -463,6 +495,7 @@ Transform:
   - {fileID: 2361478850298548576}
   - {fileID: 7430969704105617470}
   - {fileID: 2617208609347858084}
+  - {fileID: 8109765000520213954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4277566557498138713
@@ -553,18 +586,18 @@ MonoBehaviour:
   LayersToKick:
     serializedVersion: 2
     m_Bits: 129
-  KickCharge: 0
+  KickCharge: 1
   totalChargeTime: 0.2
-  trueKickForce: 8
-  relativeKickForce: 7
-  nonkickForce: 5
-  torqueForce: 2
+  trueKickForce: 10
+  relativeKickForce: 8
+  nonkickForce: 10
+  torqueForce: 0
   destructionForceDirect: 0
   explosionForce: 0
   explostionSize: 0
   upwardsModifier: 0
   thirdPerson: 1
-  spinRandomness: {x: 1, y: 1}
+  spinRandomness: {x: 0.7, y: 0.7}
   speedLimit: 25
 --- !u!114 &4789299814600824140
 MonoBehaviour:
@@ -594,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e9c66114f4cd41a81051ba34a7c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  currentState: 0
+  currentState: 1
   FPVC: {fileID: 5007903565556795481}
   TPVC: {fileID: 5462587698794846591}
   mainCollider: {fileID: 7093391474480937985}
@@ -627,6 +660,27 @@ MonoBehaviour:
   rollingSource: {fileID: 5571997794047954689}
   maxChairSpeed: 7
   rollingPitchClamp: {x: 0.7, y: 1}
+--- !u!114 &6002386605480057851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134920723650291290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2553eedce2e37234f8aee700da434adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstDestroy
+  crowd: {fileID: 0}
+  scream: {fileID: 0}
+  metal: {fileID: 0}
+  camNoise: {fileID: 2420863101334157565}
+  amplitude: 0.11
+  frequency: 2.8
+  animator: {fileID: 0}
+  animationName: crash start
+  timer: {fileID: 0}
 --- !u!1 &2266643618486941722
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +757,7 @@ GameObject:
   - component: {fileID: 5007903565556795481}
   - component: {fileID: 8874434319316190384}
   - component: {fileID: 1804101680447834515}
+  - component: {fileID: 1363252422322880186}
   m_Layer: 0
   m_Name: FPV CAM
   m_TagString: Untagged
@@ -740,7 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: 110
+    m_Value: 20
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -817,6 +872,28 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &1363252422322880186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602587610525773073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c11265b855408d42af33d62691f5194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineExternalImpulseListener
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseLocalSpace: 1
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2627397428479815790
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +939,8 @@ GameObject:
   - component: {fileID: 340285955608214744}
   - component: {fileID: 2449025267618895072}
   - component: {fileID: 2420863101334157565}
+  - component: {fileID: 5103132942015745853}
+  - component: {fileID: 4694911660323295479}
   m_Layer: 0
   m_Name: TPV CAM
   m_TagString: Untagged
@@ -877,8 +956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2905365819490657849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32141078, y: 0.3587789, z: -0.1331327, w: 0.86616886}
-  m_LocalPosition: {x: -3.5, y: 4.26, z: -3.5}
+  m_LocalRotation: {x: 0.26337597, y: 0.36680388, z: -0.109093875, w: 0.88554305}
+  m_LocalPosition: {x: -3.5, y: 4.171, z: -3.5000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -898,13 +977,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: 43
+    m_Value: 100
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 7881386203428104036}
+    TrackingTarget: {fileID: 8109765000520213954}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -945,7 +1024,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: -3.5, y: 4.26, z: -3.5}
+  FollowOffset: {x: -3.5, y: 3.23, z: -3.5}
 --- !u!114 &2449025267618895072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,7 +1050,7 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 0, z: 0}
   Damping: {x: 0.2, y: 0.2}
   Lookahead:
-    Enabled: 1
+    Enabled: 0
     Time: 0.353
     Smoothing: 1.4
     IgnoreY: 0
@@ -992,6 +1071,52 @@ MonoBehaviour:
   AmplitudeGain: 0.34
   FrequencyGain: 0.09
   m_NoiseOffsets: {x: -345.5819, y: -509.54483, z: 695.47363}
+--- !u!114 &5103132942015745853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905365819490657849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c11265b855408d42af33d62691f5194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineExternalImpulseListener
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseLocalSpace: 1
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &4694911660323295479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905365819490657849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 514.61694, y: 120.309204, z: 295.30615}
 --- !u!1 &2978698758089017014
 GameObject:
   m_ObjectHideFlags: 0

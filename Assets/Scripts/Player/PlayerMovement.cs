@@ -116,15 +116,16 @@ public class PlayerMovement : MonoBehaviour
     void ProcessJump3Person() {
         float forceModifier = KickCharge;
 
-        if(Physics.BoxCast(Orientation.position, boxScale/2, Orientation.forward, out RaycastHit hit, Orientation.rotation, 1000f, LayersToKick)){
-            ForceAndTorque(hit, forceModifier);
-            Vector3 reliableExplosionPoint = (hit.point == Vector3.zero) ? hit.collider.transform.position : hit.point;
+        // if(Physics.BoxCast(Orientation.position, boxScale/2, Orientation.forward, out RaycastHit hit, Orientation.rotation, 1000f, LayersToKick)){
+        //     ForceAndTorque(hit, forceModifier);
+        //     Vector3 reliableExplosionPoint = (hit.point == Vector3.zero) ? hit.collider.transform.position : hit.point;
 
-            KickDestruction(hit, forceModifier, reliableExplosionPoint);
-        } else {
-            // If your not a gamer you dont get to kick like a man
-            rb.AddForce(-transform.forward * nonkickForce * forceModifier, ForceMode.Impulse);
-        }
+        //     KickDestruction(hit, forceModifier, reliableExplosionPoint);
+        // } else {
+        //     // If your not a gamer you dont get to kick like a man
+        //     rb.AddForce(-transform.forward * nonkickForce * forceModifier, ForceMode.Impulse);
+        // }
+        rb.AddForce(-transform.forward * nonkickForce * forceModifier, ForceMode.Impulse);
     }
     void ForceAndTorque(RaycastHit hit, float forceModifier) {
         Vector3 force = new();

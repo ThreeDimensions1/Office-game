@@ -31,13 +31,13 @@ public class PlayerCamera : MonoBehaviour
     }
 
     private void CursorLock(bool obj) {
-        if (obj) {
-            cursorReleased = true;
-            Cursor.lockState = CursorLockMode.None;
-        } else {
-            cursorReleased = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        // if (obj) {
+        //     cursorReleased = true;
+        //     Cursor.lockState = CursorLockMode.None;
+        // } else {
+        //     cursorReleased = false;
+        //     Cursor.lockState = CursorLockMode.Locked;
+        // }
     }
 
     void Update() {

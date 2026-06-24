@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 
 public class Ui_ScoreBoard : MonoBehaviour 
 {
+    public static Ui_ScoreBoard Instance;
     [Header("Popups:")]
     public Transform parent;
     public UiScoreCounter ScorePopupPrefab;
@@ -21,6 +22,7 @@ public class Ui_ScoreBoard : MonoBehaviour
     public TMP_Text textMultiplier;
     public TMP_Text textFlavor;
 
+    public int score {get; private set; }
 
 
     void Awake() {
@@ -34,6 +36,12 @@ public class Ui_ScoreBoard : MonoBehaviour
             defaultCapacity: 20,                // Pre-allocates memory for 20 items
             maxSize: 50                        // Absolute limit of items alive in memory
         );
+        textScore.text = string.Format(scoreFormatting, 0);
+        Instance = this;
+    }
+    void OnDestroy()
+    {
+        Instance = null;
     }
     private UiScoreCounter CreatePooledItem() {
         UiScoreCounter go = Instantiate(ScorePopupPrefab, parent);
@@ -74,10 +82,16 @@ public class Ui_ScoreBoard : MonoBehaviour
         counter.lifetime = CounterLifetime;
 
         textScore.text = string.Format(scoreFormatting, score);
+        this.score = score;
     }
     private void onComboUpdate(int combo, float multiplier, string flavorText) {
         textCombo.text = string.Format("{0}x", combo);
         textMultiplier.text = string.Format("{0}x", multiplier.ToString("F1"));
         textFlavor.text = flavorText;
+    }
+
+    public void SaveProgress()
+    {
+        Progress.SaveProgress($"Floor{FloorInfo.Instance.currentFloor.floorID}", score);
     }
 }
