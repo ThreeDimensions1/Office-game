@@ -6,8 +6,9 @@ public class BoxDestruction : DestructionObject
     public ParticleSystem particles;
     public AudioSource sfx;
 
-    public override void OnHit()
+    public override void OnHit(bool triggeredByPlayer = false)
     {
+        if (isDestroyed || !canBeDestroyed && !triggeredByPlayer) return;
         if(particles)
         {
             Transform trans = particles.transform;
