@@ -24,6 +24,7 @@ public class Ui_ScoreBoard : MonoBehaviour
 
     public int score {get; private set; }
 
+    public Action<int> onScoreChange;
 
     void Awake() {
         // Initialize the pool with its rules
@@ -83,6 +84,7 @@ public class Ui_ScoreBoard : MonoBehaviour
 
         textScore.text = string.Format(scoreFormatting, score);
         this.score = score;
+        onScoreChange?.Invoke(score);
     }
     private void onComboUpdate(int combo, float multiplier, string flavorText) {
         textCombo.text = string.Format("{0}x", combo);
