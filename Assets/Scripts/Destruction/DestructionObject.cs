@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +7,9 @@ using UnityEngine.Events;
 public class DestructionObject : MonoBehaviour
 {
     [Header("Score related")]
-    [SerializeField] protected int scoreGain;
-    public int ScoreGain => scoreGain;
+    // [SerializeField] protected int scoreGain = 100;
+    // public int ScoreGain => scoreGain;
+    [SerializeField] protected ScoreProfile scoreProfile = ScoreProfile.Small;
     [SerializeField] protected string displayName;
     public string DisplayName => displayName;
 
@@ -15,25 +17,43 @@ public class DestructionObject : MonoBehaviour
     public float destroyVelocity = 2;
     public UnityEvent onDestroy;
 
+    [Header("Effects")]
+    public float impulseForce = 1f;
+
     private bool isDestroyed = false;
     Rigidbody rb;
 
+    CinemachineImpulseSource impulse;
+
+    AudioSource source;
+
     public virtual void Start() {
         rb = GetComponent<Rigidbody>();
+        impulse = FindAnyObjectByType<CinemachineImpulseSource>();
+        source = GetComponentInChildren<AudioSource>();
     }
 
     public virtual void OnHit() {
         if (isDestroyed) return;
+        impulse?.GenerateImpulseWithForce(impulseForce);
+        if(source)
+        {
+            source?.Play();
+        }
         isDestroyed = true;
-
-        ScoreManager.Instance?.RegisterDestruction(scoreGain, displayName);
         onDestroy?.Invoke();
+
+        ScoreManager.Instance?.RegisterDestruction(scoreProfile, displayName);
     }
     
     protected virtual void OnCollisionEnter(Collision collision) {
         float velocity = collision.relativeVelocity.magnitude; //rb.linearVelocity.magnitude;
 
         if(velocity > destroyVelocity) {
+            if(!isDestroyed && collision.gameObject.TryGetComponent(out FirstDestroy destroy) && !destroy.destroyed)
+            {
+                destroy.StartCrazyness();
+            }
             OnHit();
         }
     }

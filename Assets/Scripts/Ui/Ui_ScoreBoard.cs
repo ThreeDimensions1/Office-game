@@ -10,13 +10,17 @@ public class Ui_ScoreBoard : MonoBehaviour
     public Transform parent;
     public UiScoreCounter ScorePopupPrefab;
     public float CounterLifetime;
+    [SerializeField] private string popupFormatting = "{1} - {0}pt";
+    [SerializeField] private string scoreFormatting = "{0}$";
     private ObjectPool<UiScoreCounter> _pool;
     private List<UiScoreCounter> activeCounters = new();
 
     [Header("Combo:")]
+    public TMP_Text textScore;
     public TMP_Text textCombo;
     public TMP_Text textMultiplier;
     public TMP_Text textFlavor;
+
 
 
     void Awake() {
@@ -57,15 +61,19 @@ public class Ui_ScoreBoard : MonoBehaviour
         ScoreManager.Instance.ScoreUpdate += onScoreUpdate;
         ScoreManager.Instance.ComboUpdate += onComboUpdate;
     }
-    private void onScoreUpdate(string obj) {
+    private void onScoreUpdate(int scoreGain, int score) {
         if (activeCounters.Count >= 40) {
             activeCounters[0].lifetime = -1f;
         }
-        
+    
+        string scoreLabel = string.Format(popupFormatting, scoreGain, name);
+
         UiScoreCounter counter = _pool.Get();
         counter.transform.SetAsFirstSibling();
-        counter.UpdateContent(string.Format(obj));
+        counter.UpdateContent(scoreLabel);
         counter.lifetime = CounterLifetime;
+
+        textScore.text = string.Format(scoreFormatting, score);
     }
     private void onComboUpdate(int combo, float multiplier, string flavorText) {
         textCombo.text = string.Format("{0}x", combo);
