@@ -1,20 +1,10 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-// [RequireComponent(typeof(Rigidbody))]
-// [RequireComponent(typeof(PlayerController))]
-// [RequireComponent(typeof(InteractionSystem))]
-// [RequireComponent(typeof(PlayerMovement))]
-// [RequireComponent(typeof(Armament))]
-// [RequireComponent(typeof(VehicleControl))]
-public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveable
+public class PlayerManager : MonoBehaviour
 {
     [Header("State Control")]
     public State currentState;
-
-    /*[Header("Variable Control")]
-    [SerializeField] BoolVariable canMove;
-    [SerializeField] BoolVariable canTurn, canInteract, canUseWeapons;*/
 
     [Header("Cameras")]
     [SerializeField] private CinemachineCamera FPVC;
@@ -89,15 +79,9 @@ public class PlayerManager : MonoBehaviour//, ISceneInitializaionTarget, ISaveab
     }
     
     void ExitState(State state) {
-        //switch(state) {
-        //}
     }
 
     public void Initialize() {
-        /*inventory.manager = this;
-        inventory.ClearInventory();
-        inventory.SetEquipmentSlots(MissionBridge.Instance.PendingLoadout.equipment);*/
-        // initializationArtefact = MissionBridge.Instance.PendingLoadout.equipment;
     }
 
     public int Progress() => 100;

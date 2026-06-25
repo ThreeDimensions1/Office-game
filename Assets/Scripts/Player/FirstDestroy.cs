@@ -18,10 +18,13 @@ public class FirstDestroy : MonoBehaviour
 
     public Animator animator;
     public string animationName;
+    [Header("Others")]
+    public Timer timer;
 
     public void StartCrazyness()
     {
         destroyed = true;
+        timer?.StartCounting();
         StartCoroutine(CrowdFadeOut());
         StartCoroutine(ScreamAndMusic());
     }
