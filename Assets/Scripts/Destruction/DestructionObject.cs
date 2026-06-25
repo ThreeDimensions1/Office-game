@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,21 +21,31 @@ public class DestructionObject : MonoBehaviour
     [Header("Effects")]
     public float impulseForce = 1f;
 
-    private bool isDestroyed = false;
+    protected bool isDestroyed = false;
     Rigidbody rb;
 
     CinemachineImpulseSource impulse;
 
     AudioSource source;
 
+    int startCooldown = 3;
+    protected bool canBeDestroyed;
+
     public virtual void Start() {
         rb = GetComponent<Rigidbody>();
         impulse = FindAnyObjectByType<CinemachineImpulseSource>();
         source = GetComponentInChildren<AudioSource>();
+        StartCoroutine(cooldown());
     }
 
-    public virtual void OnHit() {
-        if (isDestroyed) return;
+    IEnumerator cooldown()
+    {
+        yield return new WaitForSeconds(startCooldown);
+        canBeDestroyed = true;
+    }
+
+    public virtual void OnHit(bool triggeredByPlayer = false) {
+        if (isDestroyed || !canBeDestroyed && !triggeredByPlayer) return;
         impulse?.GenerateImpulseWithForce(impulseForce);
         if(source)
         {
@@ -53,8 +64,9 @@ public class DestructionObject : MonoBehaviour
             if(!isDestroyed && collision.gameObject.TryGetComponent(out FirstDestroy destroy) && !destroy.destroyed)
             {
                 destroy.StartCrazyness();
+                OnHit(true);
             }
-            OnHit();
+            else OnHit();
         }
     }
 }
