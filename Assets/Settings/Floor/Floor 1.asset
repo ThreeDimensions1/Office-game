@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763e24ddbdf28034ab8e9efcec068855, type: 3}
   m_Name: Floor 1
   m_EditorClassIdentifier: Assembly-CSharp::Floor
-  sceneName: Simon's scene 1
+  sceneName: Floor1
   floorID: 0
-  gameTime: 15
+  gameTime: 120
   floorName: Office
   image: {fileID: 0}
-  oneStar: 250
-  twoStars: 500
-  threeStars: 850
+  oneStar: 5500
+  twoStars: 7000
+  threeStars: 8500
