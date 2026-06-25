@@ -25,12 +25,13 @@ public class FloorUi : MonoBehaviour
         else timeText.text = $"Time: {minutes}:{seconds}";
         if(seconds == 0) timeText.text += "0";
 
-        scoreText.text = $"Score: {Progress.LoadProgress($"Floor{floor.floorID}")}";
+        scoreText.text = $"Best score: {Progress.LoadProgress($"Floor{floor.floorID}")}";
+        Debug.Log(SaveSystem.Load($"Floor{floor.floorID}"));
 
         starText.text =
-        @$"1 Star: {floor.oneStar}
-        2 Stars: {floor.twoStars}
-        3 Stars: {floor.threeStars}";
+@$"1 Star: {floor.oneStar}
+2 Stars: {floor.twoStars}
+3 Stars: {floor.threeStars}";
 
         imageRenderer.sprite = image;
 

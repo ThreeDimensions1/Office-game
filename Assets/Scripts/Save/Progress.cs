@@ -1,9 +1,10 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
-public static class Progress
+public class Progress
 {
     public static void SaveProgress(string savefile, int progress)
     {
-        SaveSystem.Save(savefile, JsonUtility.ToJson(progress));
+        SaveSystem.Save(savefile, JsonUtility.ToJson(new ProgressInt(progress)));
     }
 
     public static int LoadProgress(string savefile)
@@ -14,11 +15,21 @@ public static class Progress
             Debug.Log("No savefile created. Creating one with score 0");
             return 0;
         }
-        else return JsonUtility.FromJson<int>(SaveSystem.Load(savefile));
+        else return JsonUtility.FromJson<ProgressInt>(SaveSystem.Load(savefile)).integer;
     }
 
     public static bool Exists(string savefile)
     {
         return SaveSystem.Exists(savefile);
+    }
+
+    [System.Serializable]
+    class ProgressInt
+    {
+        public int integer;
+        public ProgressInt(int i)
+        {
+            integer = i;
+        }
     }
 }
