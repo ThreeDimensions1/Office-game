@@ -9,10 +9,10 @@ public class EditorFolder : MonoBehaviour
         }
 
         // Explicitly tells Unity: "Keep their world pos/rot exactly as they look right now"
-        foreach (Transform child in transform) {
-            child.SetParent(null, true); 
+        for (int i = transform.childCount - 1; i >= 0; i--) {
+            transform.GetChild(i).SetParent(null, true);
         }
         
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
