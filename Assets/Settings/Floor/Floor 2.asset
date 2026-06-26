@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763e24ddbdf28034ab8e9efcec068855, type: 3}
   m_Name: Floor 2
   m_EditorClassIdentifier: Assembly-CSharp::Floor
-  sceneName: Slopmaster's scene
+  sceneName: Floor2
   floorID: 1
   gameTime: 120
   floorName: Senior Office
