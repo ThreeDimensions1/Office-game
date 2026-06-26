@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Pool;
 
 public class Ui_ScoreBoard : MonoBehaviour 
@@ -21,6 +22,8 @@ public class Ui_ScoreBoard : MonoBehaviour
     public TMP_Text textCombo;
     public TMP_Text textMultiplier;
     public TMP_Text textFlavor;
+    public Image comboFiller;
+    public Image comoBackground, comboUpperLine;
 
     public int score {get; private set; }
 
@@ -65,6 +68,9 @@ public class Ui_ScoreBoard : MonoBehaviour
             activeCounters[i].lifetime -= Time.deltaTime;
             if(activeCounters[i].lifetime < 0) _pool.Release(activeCounters[i]);
         }
+
+        float comboDecimal = ScoreManager.Instance.ComboClock / ScoreManager.Instance.ComboClockMax;
+        comboFiller.fillAmount = comboDecimal;
     }
     void OnEnable() {
         ScoreManager.Instance.ScoreUpdate += onScoreUpdate;
@@ -86,10 +92,21 @@ public class Ui_ScoreBoard : MonoBehaviour
         this.score = score;
         onScoreChange?.Invoke(score);
     }
-    private void onComboUpdate(int combo, float multiplier, string flavorText) {
+    private void onComboUpdate(int combo, ComboTierData tierData) {
         textCombo.text = string.Format("{0}x", combo);
-        textMultiplier.text = string.Format("{0}x", multiplier.ToString("F1"));
-        textFlavor.text = flavorText;
+        textMultiplier.text = string.Format("{0}x", tierData.scoreMultiplier.ToString("F1"));
+        textFlavor.text = tierData.flavorText;
+
+        // color setting
+        Color bgColor = tierData.BottomColor;
+        bgColor.a = comoBackground.color.a;
+
+        comoBackground.color = bgColor;
+        comboFiller.color = tierData.BottomColor;
+        comboUpperLine.color = tierData.BottomColor;
+
+        textFlavor.color = tierData.BottomColor;
+        textMultiplier.colorGradient = new VertexGradient(tierData.TopColor, tierData.TopColor, tierData.BottomColor ,tierData.BottomColor);
     }
 
     public void SaveProgress()

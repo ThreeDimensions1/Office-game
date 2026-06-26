@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     public Action<int, int> ScoreUpdate;
-    public Action<int, float, string> ComboUpdate;
+    public Action<int, ComboTierData> ComboUpdate;
 
     void Awake() {
         if(Instance) {
@@ -14,6 +14,9 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+    }
+    void Start() {
+        UpdateCombo();
     }
 
     [Header("Values")]
@@ -56,7 +59,7 @@ public class ScoreManager : MonoBehaviour
         ComboTierData currentTier = comboDatabase.GetTierForCombo(combo);
         multiplier = currentTier.scoreMultiplier;
 
-        ComboUpdate.Invoke(combo, multiplier, currentTier.flavorText);
+        ComboUpdate.Invoke(combo, currentTier);
     }
     // public float GetMultiplier() {
     //     return 1f;
