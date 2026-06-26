@@ -325,7 +325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room 2
+  m_text: Floor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
   m_sharedMaterial: {fileID: 4606062373862160526, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
@@ -352,12 +352,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.8
+  m_fontSize: 18
   m_fontSizeBase: 14.8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3491,7 +3491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room 1
+  m_text: Floor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
   m_sharedMaterial: {fileID: 4606062373862160526, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
@@ -3518,12 +3518,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.8
+  m_fontSize: 18
   m_fontSizeBase: 14.8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3535,7 +3535,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -4723,6 +4723,7 @@ GameObject:
   - component: {fileID: 906260651}
   - component: {fileID: 906260650}
   - component: {fileID: 906260653}
+  - component: {fileID: 906260654}
   m_Layer: 0
   m_Name: Play (1)
   m_TagString: Untagged
@@ -4799,18 +4800,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1138499959}
-        m_TargetAssemblyTypeName: FloorUi, Assembly-CSharp
-        m_MethodName: SetUi
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 79035f5afafe9494cb01c4596e47ea59, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Floor, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!212 &906260652
 SpriteRenderer:
   serializedVersion: 2
@@ -4882,6 +4871,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c71a05b9cb7c4e44803bb1e6f158c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadSceneHelper
+--- !u!114 &906260654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906260647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f6d65f0558c1438d2d6c602155fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorButton
+  flr: {fileID: 11400000, guid: 79035f5afafe9494cb01c4596e47ea59, type: 2}
+  ui: {fileID: 1138499959}
 --- !u!1 &912763587
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,7 +5611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room select
+  m_text: Floor select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
   m_sharedMaterial: {fileID: 4606062373862160526, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
@@ -7593,6 +7596,7 @@ GameObject:
   - component: {fileID: 1365097960}
   - component: {fileID: 1365097959}
   - component: {fileID: 1365097962}
+  - component: {fileID: 1365097963}
   m_Layer: 0
   m_Name: Play
   m_TagString: Untagged
@@ -7669,18 +7673,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1138499959}
-        m_TargetAssemblyTypeName: FloorUi, Assembly-CSharp
-        m_MethodName: SetUi
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 2de9cffad30d8ae4f8a3fa0e2bcd0da0, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Floor, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!212 &1365097961
 SpriteRenderer:
   serializedVersion: 2
@@ -7752,6 +7744,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c71a05b9cb7c4e44803bb1e6f158c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadSceneHelper
+--- !u!114 &1365097963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365097956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f6d65f0558c1438d2d6c602155fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorButton
+  flr: {fileID: 11400000, guid: 2de9cffad30d8ae4f8a3fa0e2bcd0da0, type: 2}
+  ui: {fileID: 1138499959}
 --- !u!1001 &1381854851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8361,7 +8367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room 3
+  m_text: Floor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
   m_sharedMaterial: {fileID: 4606062373862160526, guid: c427b8533ab440c4280d2e93e056f2be, type: 2}
@@ -8388,12 +8394,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.8
+  m_fontSize: 18
   m_fontSizeBase: 14.8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8405,7 +8411,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -8673,6 +8679,7 @@ GameObject:
   - component: {fileID: 1575270945}
   - component: {fileID: 1575270944}
   - component: {fileID: 1575270947}
+  - component: {fileID: 1575270948}
   m_Layer: 0
   m_Name: Play (2)
   m_TagString: Untagged
@@ -8749,18 +8756,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1138499959}
-        m_TargetAssemblyTypeName: FloorUi, Assembly-CSharp
-        m_MethodName: SetUi
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: a8dcb82505ec3854c9b1ba6585018612, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Floor, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!212 &1575270946
 SpriteRenderer:
   serializedVersion: 2
@@ -8832,6 +8827,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c71a05b9cb7c4e44803bb1e6f158c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadSceneHelper
+--- !u!114 &1575270948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575270941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f6d65f0558c1438d2d6c602155fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorButton
+  flr: {fileID: 11400000, guid: a8dcb82505ec3854c9b1ba6585018612, type: 2}
+  ui: {fileID: 1138499959}
 --- !u!1 &1597470483
 GameObject:
   m_ObjectHideFlags: 0
