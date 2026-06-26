@@ -8,7 +8,6 @@ public class EditorFolder : MonoBehaviour
                              "Detaching physics objects may cause physics bugs. Bitch.", gameObject);
         }
 
-        // Explicitly tells Unity: "Keep their world pos/rot exactly as they look right now"
         for (int i = transform.childCount - 1; i >= 0; i--) {
             transform.GetChild(i).SetParent(null, true);
         }

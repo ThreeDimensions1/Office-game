@@ -27,7 +27,8 @@ public class ComboTierData
 
     [Header("UI Juice")]
     public string flavorText;
-    public Color textColor = Color.white;
+    public Color TopColor = Color.white;
+    public Color BottomColor = Color.white;
 
     [Header("Gameplay Modifiers")]
     public float scoreMultiplier = 1.0f;

@@ -14,22 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ComboDatabase
   comboTiers:
   - comboRange: {x: 1, y: 5}
-    flavorText: Naked
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    flavorText: Quiet
+    TopColor: {r: 1, g: 1, b: 1, a: 1}
+    BottomColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     scoreMultiplier: 1
   - comboRange: {x: 6, y: 10}
-    flavorText: Solid
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    flavorText: Naked
+    TopColor: {r: 1, g: 0.5137255, b: 0, a: 1}
+    BottomColor: {r: 0.94776356, g: 1, b: 0, a: 1}
     scoreMultiplier: 1.5
   - comboRange: {x: 11, y: 20}
-    flavorText: Venomous
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    flavorText: Liquid
+    TopColor: {r: 1, g: 0, b: 0, a: 1}
+    BottomColor: {r: 1, g: 0.5137255, b: 0, a: 1}
     scoreMultiplier: 1.7
   - comboRange: {x: 21, y: 30}
-    flavorText: Liquid !
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    flavorText: Solid !
+    TopColor: {r: 1, g: 0, b: 0.45773697, a: 1}
+    BottomColor: {r: 1, g: 0, b: 0, a: 1}
     scoreMultiplier: 2
   - comboRange: {x: 31, y: 50}
-    flavorText: Madjestic !
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    flavorText: Venomous !
+    TopColor: {r: 0.55522346, g: 0, b: 1, a: 1}
+    BottomColor: {r: 1, g: 0, b: 0.454902, a: 1}
     scoreMultiplier: 2.5
