@@ -15,7 +15,7 @@ MonoBehaviour:
   sceneName: Floor1
   floorID: 0
   gameTime: 120
-  floorName: Office
+  floorName: Cubicle
   image: {fileID: 0}
   oneStar: 5500
   twoStars: 7000
