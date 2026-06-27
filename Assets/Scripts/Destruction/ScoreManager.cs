@@ -5,7 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public Action<int, int> ScoreUpdate;
+    public Action<int, int, string> ScoreUpdate;
     public Action<int, ComboTierData> ComboUpdate;
 
     void Awake() {
@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
         // string scoreLabel = string.Format(popupFormatting, scoreGain, name);
         
         score += scoreGain;
-        ScoreUpdate?.Invoke(scoreGain, score);
+        ScoreUpdate?.Invoke(scoreGain, score, name);
     }
     /*private void ProcessColosion(DestructionObject @object, float arg2) {
         if(@object.destroyVelocity <= arg2) {

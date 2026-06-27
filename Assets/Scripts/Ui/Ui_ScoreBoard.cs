@@ -76,7 +76,7 @@ public class Ui_ScoreBoard : MonoBehaviour
         ScoreManager.Instance.ScoreUpdate += onScoreUpdate;
         ScoreManager.Instance.ComboUpdate += onComboUpdate;
     }
-    private void onScoreUpdate(int scoreGain, int score) {
+    private void onScoreUpdate(int scoreGain, int score, string name) {
         if (activeCounters.Count >= 40) {
             activeCounters[0].lifetime = -1f;
         }

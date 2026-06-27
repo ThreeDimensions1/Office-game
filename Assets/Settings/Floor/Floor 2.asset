@@ -15,8 +15,8 @@ MonoBehaviour:
   sceneName: Floor2
   floorID: 1
   gameTime: 120
-  floorName: Senior Office
+  floorName: Creative Offices
   image: {fileID: 0}
-  oneStar: 1000
-  twoStars: 2000
-  threeStars: 3000
+  oneStar: 6000
+  twoStars: 11000
+  threeStars: 17000
