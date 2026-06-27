@@ -8023,7 +8023,7 @@ GameObject:
   - component: {fileID: 1439222425}
   - component: {fileID: 1439222424}
   m_Layer: 0
-  m_Name: Anim
+  m_Name: USER INTERFACE ITSELF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
